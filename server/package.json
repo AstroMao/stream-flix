@@ -1,0 +1,19 @@
+{
+  "name": "stream-flex-server",
+  "version": "1.0.0",
+  "description": "Backend server for the Stream-Flex application.",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --env-file=../.env src/server.js",
+    "dev": "node --env-file=../.env --watch src/server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "fastify": "^4.24.3",
+    "pocketbase": "^0.21.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0"
+  }
+}

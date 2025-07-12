@@ -1,0 +1,3 @@
+## Pages
+- [Admin Panel - StreamFlix](/admin): No description available
+- [Login - StreamFlix](/login): Login to your StreamFlix account.
