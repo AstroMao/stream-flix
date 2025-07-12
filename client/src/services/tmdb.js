@@ -39,6 +39,36 @@ export const searchMedia = async (query, type = 'movie') => {
 };
 
 /**
+ * Search for multiple media types (movies and TV shows) on TMDB.
+ * @param {string} query - The search query.
+ * @returns {Promise<Array>} Array of search results, filtered to only include movies and TV shows.
+ */
+export const searchMulti = async (query) => {
+  const apiKey = getApiKey();
+  if (!apiKey) {
+    console.error('TMDB API key not found.');
+    return [];
+  }
+
+  try {
+    const response = await fetch(
+      `${TMDB_BASE_URL}/search/multi?api_key=${apiKey}&query=${encodeURIComponent(query)}&language=en-US&page=1`
+    );
+
+    if (!response.ok) {
+      throw new Error(`TMDB API error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    // Filter out results that are not movies or TV shows (e.g., people)
+    return data.results.filter(result => result.media_type === 'movie' || result.media_type === 'tv') || [];
+  } catch (error) {
+    console.error('Error performing multi-search on TMDB:', error);
+    return [];
+  }
+};
+
+/**
  * Get detailed information about a movie
  * @param {number} movieId - The TMDB movie ID
  * @returns {Promise<Object|null>} Movie details object or null if error

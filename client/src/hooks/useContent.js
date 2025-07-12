@@ -64,8 +64,8 @@ export function useContent() {
         startYear: show.start_year,
         endYear: show.end_year,
         status: show.status,
-        poster: show.poster ? getFileUrl(show, show.poster) : '/api/placeholder/300/450',
-        backdrop: show.backdrop ? getFileUrl(show, show.backdrop) : '/api/placeholder/1920/1080',
+        poster: getCorrectUrl(show, show.poster, '/api/placeholder/300/450'),
+        backdrop: getCorrectUrl(show, show.backdrop, '/api/placeholder/1920/1080'),
         type: 'series'
       }));
 
